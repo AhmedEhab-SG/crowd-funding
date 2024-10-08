@@ -1,5 +1,6 @@
 {
   "name": "@crowd-funding/backend",
+  "private": true,
   "version": "1.0.0",
   "description": "crowd-funding backend",
   "main": "index.js",

@@ -1,0 +1,23 @@
+{
+  "name": "@crowd-funding/mobile",
+  "version": "1.0.0",
+  "description": "crowd-funding mobile",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmedEhab-SG/crowd-funding.git"
+  },
+  "keywords": [
+    "crowd-funding",
+    "mobile"
+  ],
+  "author": "Ahmed Ehab",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AhmedEhab-SG/crowd-funding/issues"
+  },
+  "homepage": "https://github.com/AhmedEhab-SG/crowd-funding#readme"
+}

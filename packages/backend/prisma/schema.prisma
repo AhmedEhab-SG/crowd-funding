@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int        @id @default(autoincrement())
+  name          String
+  email         String     @unique
+  password      String
+  websites      String[]   @default([])
+  bio           String?
+  avatar        String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  campaigns     Campaign[] @relation("UserCampaigns")
+  comments      Comment[]
+  savedCampaign Campaign[] @relation("UserSavedCampaigns")
+}
+
+model Campaign {
+  id            Int           @id @default(autoincrement())
+  title         String
+  subtitle      String
+  location      String
+  goal          Int
+  pledged       Int?          @default(0)
+  backers       Int           @default(0)
+  categories    Category[]
+  subcategories Subcategory[] @default([uncategorized])
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  userId        Int
+  images        String[]      @default([])
+  videos        String[]      @default([])
+  user          User          @relation("UserCampaigns", fields: [userId], references: [id])
+  comments      Comment[]
+  savedBy       User[]        @relation("UserSavedCampaigns")
+}
+
+model Comment {
+  id         Int       @id @default(autoincrement())
+  content    String
+  userId     Int
+  campaignId Int
+  parentId   Int?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  campaign   Campaign  @relation(fields: [campaignId], references: [id])
+  parent     Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies    Comment[] @relation("CommentReplies")
+  user       User      @relation(fields: [userId], references: [id])
+}
+
+enum Category {
+  technology
+  art
+  music
+  film
+  food
+  fashion
+  games
+  design
+  photography
+  publishing
+  comics
+  theater
+  dance
+  journalism
+  crafts
+}
+
+enum Subcategory {
+  software
+  hardware
+  painting
+  sculpture
+  classical
+  rock
+  documentary
+  shortFilm
+  vegan
+  gourmet
+  streetwear
+  hauteCouture
+  boardGames
+  videoGames
+  graphicDesign
+  interiorDesign
+  portrait
+  landscape
+  fiction
+  nonFiction
+  superhero
+  manga
+  drama
+  comedy
+  ballet
+  hipHop
+  investigative
+  opinion
+  knitting
+  woodworking
+  uncategorized
+}
+
+enum Rating {
+  ZERO
+  ONE
+  TWO
+  THREE
+  FOUR
+  FIVE
+}

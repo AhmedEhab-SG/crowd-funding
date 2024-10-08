@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form method="post" enctype="multipart/form-data">
+      <input type="text" name="title" />
+      <input type="text" name="subtitle" />
+      <input type="text" name="location" />
+      <input type="text" name="goal" />
+      <input type="text" name="categories" />
+      <input type="text" name="subcategories" />
+      <input type="file" name="uploads" multiple />
+      <button type="submit">Upload</button>
+    </form>
+  </body>
+  <script>
+    const form = document.querySelector("form");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      const categories = formData.getAll("categories");
+      const subcategories = formData.getAll("subcategories");
+
+      // Convert arrays to JSON strings
+      formData.set("categories", JSON.stringify(categories));
+      formData.set("subcategories", JSON.stringify(subcategories));
+
+      const res = await fetch("http://localhost:8080/api/campaign", {
+        method: "POST",
+        body: formData,
+        headers: {
+          authorization:
+            "bearer " +
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhaG1lZC5laGFiNjMyQGdtYWlsLmNvbSIsImlhdCI6MTcyODI4Njg3MCwiZXhwIjoxNzI4Mjg3MTcwfQ.ZaSyPKLru4kukAqhWlM4WqlfzuSgJnz8vgIUOMBaorI",
+        },
+        "Content-Type": "multipart/form-data",
+      });
+
+      const data = await res.json();
+      console.log(data);
+    });
+  </script>
+</html>

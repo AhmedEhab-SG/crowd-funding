@@ -1,0 +1,47 @@
+{
+  "name": "crowd-funding",
+  "version": "1.0.0",
+  "description": "FullStack Crowd Funding App",
+  "scripts": {
+    "test:backend": "npm run test -w packages/backend",
+    "test:frontend": "npm run test -w packages/frontend",
+    "test:mobile": "npm run test -w packages/mobile",
+    "test": "npm run test -ws",
+    "dev:backend": "npm run dev -w packages/backend",
+    "dev:frontend": "npm run dev -w packages/frontend",
+    "dev:mobile": "npm run dev -w packages/mobile",
+    "dev": "concurrently --kill-others \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build": "npm run build -ws",
+    "build:backend": "npm run build -w packages/backend",
+    "build:frontend": "npm run build -w packages/frontend",
+    "build:mobile": "npm run build -w packages/mobile",
+    "start:backend": "npm run start -w packages/backend",
+    "start:frontend": "npm run start -w packages/frontend",
+    "start:mobile": "npm run start -w packages/mobile",
+    "start": "concurrently --kill-others \"npm run start:backend\" \"npm run start:frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmedEhab-SG/crowd-funding.git"
+  },
+  "keywords": [
+    "crowd-funding",
+    "backend",
+    "frontend",
+    "mobile"
+  ],
+  "author": "Ahmed Ehab",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AhmedEhab-SG/crowd-funding/issues"
+  },
+  "homepage": "https://github.com/AhmedEhab-SG/crowd-funding#readme",
+  "workspaces": [
+    "packages/backend",
+    "packages/frontend",
+    "packages/mobile"
+  ],
+  "dependencies": {
+    "concurrently": "^9.0.1"
+  }
+}

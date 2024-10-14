@@ -8,21 +8,21 @@ datasource db {
 }
 
 model User {
-  id            Int        @id @default(autoincrement())
-  name          String
-  email         String     @unique
-  password      String
-  websites      String[]   @default([])
-  bio           String?
-  avatar        String?
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
-  campaigns     Campaign[] @relation("UserCampaigns")
-  comments      Comment[]
-  savedCampaign Campaign[] @relation("UserSavedCampaigns")
+  id           Int       @id @default(autoincrement())
+  name         String
+  email        String    @unique
+  password     String
+  websites     String[]  @default([])
+  bio          String?
+  avatar       String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  comments     Comment[]
+  projects     Project[] @relation("UserProjects")
+  savedProject Project[] @relation("UserSavedProjects")
 }
 
-model Campaign {
+model Project {
   id            Int           @id @default(autoincrement())
   title         String
   subtitle      String
@@ -31,29 +31,29 @@ model Campaign {
   pledged       Int?          @default(0)
   backers       Int           @default(0)
   categories    Category[]
-  subcategories Subcategory[] @default([uncategorized])
+  subcategories SubCategory[] @default([uncategorized])
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
   userId        Int
   images        String[]      @default([])
   videos        String[]      @default([])
-  user          User          @relation("UserCampaigns", fields: [userId], references: [id])
   comments      Comment[]
-  savedBy       User[]        @relation("UserSavedCampaigns")
+  user          User          @relation("UserProjects", fields: [userId], references: [id])
+  savedBy       User[]        @relation("UserSavedProjects")
 }
 
 model Comment {
-  id         Int       @id @default(autoincrement())
-  content    String
-  userId     Int
-  campaignId Int
-  parentId   Int?
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  campaign   Campaign  @relation(fields: [campaignId], references: [id])
-  parent     Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
-  replies    Comment[] @relation("CommentReplies")
-  user       User      @relation(fields: [userId], references: [id])
+  id        Int       @id @default(autoincrement())
+  content   String
+  userId    Int
+  projectId Int
+  parentId  Int?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies   Comment[] @relation("CommentReplies")
+  project   Project   @relation(fields: [projectId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
 }
 
 enum Category {
@@ -74,7 +74,7 @@ enum Category {
   crafts
 }
 
-enum Subcategory {
+enum SubCategory {
   software
   hardware
   painting

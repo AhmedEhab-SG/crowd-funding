@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { FileArray, UploadedFile } from "express-fileupload";
-import safeFile from "../schemas/campaign/safeFile.schema";
+import safeFile from "../schemas/project/safeFile.schema";
 import config from "../config";
 
 const setVideosAndImagesGlobal = (req: Request, file: UploadedFile) => {

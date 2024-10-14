@@ -12,7 +12,7 @@ const apiRoutes = {
     register: "/register",
     refresh: "/refresh",
   },
-  campaign: "/campaign",
+  projects: "/projects",
 };
 
 export default config;

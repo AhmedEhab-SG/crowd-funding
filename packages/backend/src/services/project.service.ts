@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { Campaign, Query } from "../types/campaign";
+import { Project, Query } from "../types/project";
 import client from "../db";
 import { DecodeUser } from "../types/auth";
 
-const getCampaignService = async (res: Response, query: Query) => {
+const getProjectService = async (res: Response, query: Query) => {
   try {
-    const campaigns = await client.campaign.findMany({
+    const projects = await client.project.findMany({
       take: query.limit,
       skip: (query.page - 1) * query.limit,
       where: {
@@ -21,11 +21,11 @@ const getCampaignService = async (res: Response, query: Query) => {
             }
           : undefined,
 
-        subcategories: query.subcategory
+        subcategories: query.subCategory
           ? {
-              hasSome: Array.isArray(query.subcategory)
-                ? query.subcategory
-                : [query.subcategory],
+              hasSome: Array.isArray(query.subCategory)
+                ? query.subCategory
+                : [query.subCategory],
             }
           : undefined,
 
@@ -33,16 +33,16 @@ const getCampaignService = async (res: Response, query: Query) => {
       },
     });
 
-    if (!campaigns.length) {
-      res.status(404).json({ message: "No campaigns found" });
+    if (!projects.length) {
+      res.status(404).json({ message: "No projects found" });
       return;
     }
 
-    const itemCount = await client.campaign.count();
+    const itemCount = await client.project.count();
     const pageCount = Math.ceil(itemCount / query.limit);
 
     res.status(200).json({
-      data: campaigns,
+      data: projects,
       meta: {
         page: query.page,
         limit: query.limit,
@@ -57,9 +57,9 @@ const getCampaignService = async (res: Response, query: Query) => {
   }
 };
 
-const createCampaignService = async (res: Response, campaign: Campaign) => {
+const createProjectService = async (res: Response, project: Project) => {
   try {
-    await client.campaign.create({ data: campaign });
+    await client.project.create({ data: project });
 
     res.status(201).end();
   } catch (err) {
@@ -67,11 +67,11 @@ const createCampaignService = async (res: Response, campaign: Campaign) => {
   }
 };
 
-const updateCampaignService = async (
+const updateProjectService = async (
   res: Response,
-  campaignId: number,
+  projectId: number,
   userInfo: DecodeUser,
-  campaign: Partial<Campaign>
+  project: Partial<Project>
 ) => {
   try {
     const { id, email } = userInfo;
@@ -85,22 +85,22 @@ const updateCampaignService = async (
       return;
     }
 
-    const targetCampaign = await client.campaign.findUnique({
-      where: { id: campaignId, userId: +id },
+    const targetProject = await client.project.findUnique({
+      where: { id: projectId, userId: +id },
     });
 
-    if (!targetCampaign) {
-      res.status(404).json({ message: "Campaign not found" });
+    if (!targetProject) {
+      res.status(404).json({ message: "Project not found" });
       return;
     }
 
     // check if images and videos are updated and update them
-    // targetCampaign.images.forEach((image) => {});
-    // targetCampaign.videos.forEach((video) => {});
+    // targetProject.images.forEach((image) => {});
+    // targetProject.videos.forEach((video) => {});
 
-    await client.campaign.update({
-      where: { id: campaignId },
-      data: { ...campaign, userId: +id, id: campaignId, updatedAt: new Date() },
+    await client.project.update({
+      where: { id: projectId },
+      data: { ...project, userId: +id, id: projectId, updatedAt: new Date() },
     });
 
     res.status(201).end();
@@ -109,9 +109,9 @@ const updateCampaignService = async (
   }
 };
 
-const deleteCampaignService = async (
+const deleteProjectService = async (
   res: Response,
-  campaignId: number,
+  projectId: number,
   userInfo: DecodeUser
 ) => {
   try {
@@ -126,16 +126,16 @@ const deleteCampaignService = async (
       return;
     }
 
-    const targetCampaign = await client.campaign.findUnique({
-      where: { id: campaignId, userId: +id },
+    const targetProject = await client.project.findUnique({
+      where: { id: projectId, userId: +id },
     });
 
-    if (!targetCampaign) {
-      res.status(404).json({ message: "Campaign not found" });
+    if (!targetProject) {
+      res.status(404).json({ message: "Project not found" });
       return;
     }
 
-    await client.campaign.delete({ where: { id: campaignId, userId: +id } });
+    await client.project.delete({ where: { id: projectId, userId: +id } });
 
     res.status(204).end();
   } catch (err) {
@@ -144,8 +144,8 @@ const deleteCampaignService = async (
 };
 
 export {
-  getCampaignService,
-  createCampaignService,
-  updateCampaignService,
-  deleteCampaignService,
+  getProjectService,
+  createProjectService,
+  updateProjectService,
+  deleteProjectService,
 };

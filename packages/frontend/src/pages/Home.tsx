@@ -1,4 +1,4 @@
-import Featured from "../components/sections/Featured";
+import Featured from "../components/sections/FeaturedRecommend";
 import HomeHero from "../components/sections/HomeHero";
 import PageContainer from "../components/shared/PageContainer";
 

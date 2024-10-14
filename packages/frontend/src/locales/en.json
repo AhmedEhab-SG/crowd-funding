@@ -10,13 +10,20 @@
   "pages": {
     "home": {
       "title": "Home",
+
       "hero": {
         "title": "Bring a creative project to life.",
         "totlalBanner": {
+          "title": "On CrowdFunding:",
           "project": "projects funded",
           "creative": "towards creative works",
           "pledges": "pledges"
         }
+      },
+
+      "featuredRecommend": {
+        "featured": "Featured Projects",
+        "recommended": "Recommended for you"
       }
     }
   },

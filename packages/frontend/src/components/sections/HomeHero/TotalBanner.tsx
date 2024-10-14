@@ -1,7 +1,8 @@
 import { trim } from "../../../utils/functions/general";
 import en from "../../../locales/en.json";
+import SectionHeader from "../../shared/SectionHeader";
 
-const { project, pledges, creative } = en.pages.home.hero.totlalBanner;
+const { project, pledges, creative, title } = en.pages.home.hero.totlalBanner;
 
 const elementsArr = [
   {
@@ -27,16 +28,7 @@ const TotalBanner = ({ className = "" }: { className?: string }) => {
         flex-col
         ${className}`)}
     >
-      <h4
-        className={trim(`
-          md:text-center
-          mb-5
-          font-medium
-          text-gray-500
-          text-responsive-2xs`)}
-      >
-        {"On CrowdFunding:".toUpperCase()}
-      </h4>
+      <SectionHeader className="md:text-center" title={title} />
       <ul
         className={trim(`
           flex

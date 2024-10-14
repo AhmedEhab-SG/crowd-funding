@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { UploadedFile } from "express-fileupload";
 import config from "../../config";
-import { Category, Subcategory } from "@prisma/client";
+import { Category, SubCategory } from "@prisma/client";
 
 const imageValidator = (files: UploadedFile[] | string[]) => {
   if (!files?.length) return false;
@@ -39,7 +39,7 @@ const videoValidator = (files: UploadedFile[] | string[]) => {
   });
 };
 
-const campaignSchema = z.object({
+const projectSchema = z.object({
   userId: z.number(),
 
   title: z
@@ -98,7 +98,7 @@ const campaignSchema = z.object({
 
   subcategories: z
     .array(
-      z.nativeEnum(Subcategory, {
+      z.nativeEnum(SubCategory, {
         message:
           "Must be software, hardware, painting, sculpture, classical, rock, documentary, shortFilm, vegan, gourmet, streetwear, hauteCouture, boardGames, videoGames, graphicDesign, interiorDesign, portrait, landscape, fiction, nonFiction, superhero, manga, drama, comedy, ballet, hipHop, investigative, opinion, knitting, woodworking, uncategorized",
       })
@@ -106,4 +106,4 @@ const campaignSchema = z.object({
     .optional(),
 });
 
-export default campaignSchema;
+export default projectSchema;

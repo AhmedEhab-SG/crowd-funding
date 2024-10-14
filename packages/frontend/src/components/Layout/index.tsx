@@ -1,4 +1,4 @@
-import { trim } from "../../lib/functions/general";
+import { trim } from "../../utils/functions/general";
 import { HTMLAttributes, ReactNode } from "react";
 
 const Layout = ({

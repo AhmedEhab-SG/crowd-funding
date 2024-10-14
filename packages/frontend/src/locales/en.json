@@ -1,0 +1,24 @@
+{
+  "header": {
+    "title": "header",
+    "search": "Search projects, createors and categories",
+    "nav": {
+      "login": "Login",
+      "start": "Start a project"
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Home",
+      "hero": {
+        "title": "Bring a creative project to life.",
+        "totlalBanner": {
+          "project": "projects funded",
+          "creative": "towards creative works",
+          "pledges": "pledges"
+        }
+      }
+    }
+  },
+  "footer": {}
+}

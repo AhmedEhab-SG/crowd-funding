@@ -24,8 +24,73 @@
       "featuredRecommend": {
         "featured": "Featured Projects",
         "recommended": "Recommended for you"
+      },
+
+      "blog": {
+        "title": "Project Updates Blog",
+        "description": "A destination for company news, creator tips, project inspiration, and home to product updates sharing everything you need to know about what's happening at CrowdFunding.",
+        "more": "Read more"
       }
     }
   },
-  "footer": {}
+  "footer": {
+    "title": "footer",
+
+    "copyRight": "CrowdFunding, AES ©",
+
+    "intrested": "Interested in the project?",
+
+    "nav": {
+      "arts": "Arts",
+      "c&i": "Comics & Illustration",
+      "d&t": "Design & Tech",
+      "film": "Film",
+      "f&c": "Food & Craft",
+      "games": "Games",
+      "music": "Music",
+      "publishing": "Publishing"
+    },
+
+    "webInfo": {
+      "about": {
+        "title": "About",
+        "info": {
+          "aboutUs": "About Us",
+          "ourCharter": "Our Charter",
+          "stats": "Stats",
+          "press": "Press",
+          "jobs": "Jobs"
+        }
+      },
+      "support": {
+        "title": "Support",
+        "info": {
+          "helpCenter": "Help Center",
+          "ourRules": "Our Rules",
+          "creatorResources": "Creator Resources",
+          "forwardFunds": "Forward Funds",
+          "brandAssets": "Brand assets"
+        }
+      },
+      "more": {
+        "title": "More From CrowdFunding",
+        "info": {
+          "newsletters": "Newsletters",
+          "kickstarterProjectUpdates": "Kickstarter Project Updates",
+          "theCreativeIndependent": "The Creative Independent",
+          "mobileApps": "Mobile apps",
+          "research": "Research"
+        }
+      }
+    },
+
+    "tos": {
+      "t&s": "Trust & Safety",
+      "tou": "Terms of Use",
+      "privacyPolicy": "Privacy Policy",
+      "cookiePreferences": "Cookie Preferences",
+      "accessibilityStatement": "Accessibility Statement",
+      "caNoticeOfConsent": "CA Notice of Consent"
+    }
+  }
 }

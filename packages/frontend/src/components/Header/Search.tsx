@@ -15,7 +15,6 @@ const Search = ({ className = "" }: { className?: string }) => {
       svgIcon={<GrSearch />}
       placeholder={breakPoints.size.sm ? search : search.substring(0, 7)}
       placeholderClassName="text-gray-400 text-nowrap"
-      placeholderStyle="over"
       iconLeft
       tagSize="md"
     />

@@ -228,13 +228,10 @@ const getClasses = (
               ${tagSize === "xl" ? styles["text-4xl"] : ""}
               ${error ? styles["color-rose"] : ""}`,
 
-    placeholder: `
-                  ${styles.placeholder}
-                  ${
-                    placeholderStyle === "inside"
-                      ? styles["insideStyle"]
-                      : styles["overStyle"]
-                  }
+    placeholder: `${styles.placeholder}
+                  ${placeholderStyle === "over" ? styles["overStyle"] : ""}
+                  ${placeholderStyle === "inside" ? styles["insideStyle"] : ""}
+                  ${!placeholderStyle ? styles["hideholder"] : ""}
                   ${
                     elemType === "input"
                       ? styles.placeholderInput

@@ -12,6 +12,7 @@ const Error = ({
   tagSize?: "xs" | "sm" | "md" | "lg" | "xl" | "custom";
 }) => {
   const classes = getClasses("error", { tagSize });
+
   return (
     <p
       className={formatClasses(`

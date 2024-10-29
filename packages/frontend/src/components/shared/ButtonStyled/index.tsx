@@ -7,12 +7,12 @@ import {
   MouseEventHandler,
   ReactNode,
   forwardRef,
-  useImperativeHandle,
 } from "react";
 import { Link } from "react-router-dom";
 import styles from "./button-styles.module.css";
-import useRippleEffect from "./useRippleEffect";
+import useRippleEffect from "./hooks/useRippleEffect";
 import varablesTwClasses, { formatClasses } from "./variables";
+import useRefForward from "./hooks/useRefForward";
 
 interface ButtonStyledProps
   extends ButtonHTMLAttributes<HTMLElement>,
@@ -39,10 +39,6 @@ interface ButtonStyledProps
   danger?: boolean;
   children?: ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
-}
-
-interface ImperativeHandle {
-  focus: () => void;
 }
 
 const ButtonStyled = forwardRef(
@@ -77,6 +73,10 @@ const ButtonStyled = forwardRef(
     const [targetRef, setFire] = useRippleEffect(ripple, {
       bgColor: varablesTwClasses.rippleBg,
       duration: varablesTwClasses.rippleDuration,
+    });
+
+    const [_ref, refHandler] = useRefForward(ref as ForwardedRef<HTMLElement>, {
+      customRef: targetRef,
     });
 
     const classes = formatClasses(`
@@ -116,24 +116,11 @@ const ButtonStyled = forwardRef(
       ></span>
     );
 
-    useImperativeHandle<unknown, ImperativeHandle>(ref, () => ({
-      focus: () => {
-        if (targetRef.current) {
-          targetRef.current.focus();
-        }
-      },
-    }));
-
     const onClickHandler = (
       e: MouseEvent<HTMLButtonElement | HTMLAnchorElement>
     ) => {
       setFire(e);
       if (onClick) onClick(e);
-    };
-
-    const refHandler = (e: HTMLButtonElement | HTMLAnchorElement) => {
-      if (typeof ref === "function") return ref(e);
-      targetRef.current = e;
     };
 
     return elemType === "button" && !href ? (

@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { Project, Query } from "../types/project";
 import client from "../db";
 import { DecodeUser } from "../types/auth";

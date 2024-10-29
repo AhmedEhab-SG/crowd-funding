@@ -30,7 +30,7 @@
       formData.set("categories", JSON.stringify(categories));
       formData.set("subcategories", JSON.stringify(subcategories));
 
-      const res = await fetch("http://localhost:8080/api/campaign", {
+      const res = await fetch("http://localhost:8080/api/projects", {
         method: "POST",
         body: formData,
         headers: {
@@ -42,7 +42,7 @@
       });
 
       const data = await res.json();
-      console.log(data);
+     
     });
   </script>
 </html>

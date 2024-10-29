@@ -4,6 +4,18 @@
   inherits: false;
 }
 
+:root {
+  --succesColor: #047857;
+  --warringColor: #ca8a04;
+  --dengerColor: #991b1b;
+  --whiteColor: #f8fafc;
+  --creamyColor: #d1d5db;
+
+  ---conicColor1: rgba(18, 8, 126, 1);
+  ---conicColor2: rgba(136, 136, 255, 1);
+  ---conicColor3: rgba(26, 6, 56, 1);
+}
+
 /* ButtonStyled */
 
 .mainStyles {
@@ -76,45 +88,45 @@
 /* types */
 
 .success {
-  background-color: #047857;
-  color: #f8fafc;
+  background-color: var(--succesColor);
+  color: var(--whiteColor);
 }
 
 .successBorder {
   border-width: 2px;
-  border-color: #047857;
+  border-color: var(--succesColor);
 }
 
 .successBorder:hover {
-  border-color: #047857;
+  border-color: var(--succesColor);
 }
 
 .warning {
-  background-color: #ca8a04;
-  color: #f8fafc;
+  background-color: var(--warringColor);
+  color: var(--whiteColor);
 }
 
 .warningBorder {
   border-width: 2px;
-  border-color: #ca8a04;
+  border-color: var(--warringColor);
 }
 
 .warningBorder:hover {
-  border-color: #ca8a04;
+  border-color: var(--warringColor);
 }
 
 .danger {
-  background-color: #991b1b;
-  color: #d1d5db;
+  background-color: var(--dengerColor);
+  color: var(--creamyColor);
 }
 
 .dangerBorder {
   border-width: 2px;
-  border-color: #991b1b;
+  border-color: var(--dengerColor);
 }
 
 .dangerBorder:hover {
-  border-color: #991b1b;
+  border-color: var(--dengerColor);
 }
 
 /* types */
@@ -139,11 +151,11 @@
   z-index: -2;
   background: conic-gradient(
     from var(--rotate),
-    rgba(18, 8, 126, 1),
-    rgba(136, 136, 255, 1),
-    rgba(26, 6, 56, 1),
-    rgba(136, 136, 255, 1),
-    rgba(18, 8, 126, 1)
+    var(---conicColor1),
+    var(---conicColor2),
+    var(---conicColor3),
+    var(---conicColor2),
+    var(---conicColor1)
   );
   animation: spin 15s linear infinite;
 }

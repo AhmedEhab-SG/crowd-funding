@@ -30,7 +30,7 @@ const InputStyled = forwardRef(
       elemType = "input",
       transparent,
       errorClassName = "",
-      placeholderStyle = "inside",
+      placeholderStyle,
       placeholderClassName = "",
       inputContainerClassName = "",
       svgIconClassName = "",

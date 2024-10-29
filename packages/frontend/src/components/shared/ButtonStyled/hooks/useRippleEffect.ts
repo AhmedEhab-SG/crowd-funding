@@ -1,5 +1,5 @@
 import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
-import styles from "./button-styles.module.css";
+import styles from "../button-styles.module.css";
 
 const useRippleEffect = (
   ripple?: boolean,

@@ -67,7 +67,7 @@
 }
 
 .placeholderInput {
-  top: 25%;
+  top: 30%;
 }
 
 .placeholderTextarea {
@@ -78,6 +78,11 @@
 .tag:not(:placeholder-shown) + .placeholder.insideStyle {
   transform: scale(0.6);
   top: 0rem;
+}
+
+.tag:focus + .placeholder.hideholder,
+.tag:not(:placeholder-shown) + .placeholder.hideholder {
+  display: none;
 }
 
 .tag:focus + .placeholder.overStyle,

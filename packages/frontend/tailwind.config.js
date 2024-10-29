@@ -19,6 +19,7 @@ export default {
       colors: {
         primary: "#037362",
         hightlight: "#05ce78",
+        bodyblack: "#282828",
       },
       fontSize: {
         "responsive-cover": "clamp(2.5rem, 7vw, 5rem)",

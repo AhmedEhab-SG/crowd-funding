@@ -16,4 +16,37 @@ enum CategoriesEnum {
   theater = "Theater",
 }
 
-export { CategoriesEnum };
+enum SubCategoryEnum {
+  software = "software",
+  hardware = "hardware",
+  painting = "painting",
+  sculpture = "sculpture",
+  classical = "classical",
+  rock = "rock",
+  documentary = "documentary",
+  shortFilm = "shortFilm",
+  vegan = "vegan",
+  gourmet = "gourmet",
+  streetwear = "streetwear",
+  hauteCouture = "hauteCouture",
+  boardGames = "boardGames",
+  videoGames = "videoGames",
+  graphicDesign = "graphicDesign",
+  interiorDesign = "interiorDesign",
+  portrait = "portrait",
+  landscape = "landscape",
+  fiction = "fiction",
+  nonFiction = "nonFiction",
+  superhero = "superhero",
+  manga = "manga",
+  drama = "drama",
+  comedy = "comedy",
+  ballet = "ballet",
+  hipHop = "hipHop",
+  investigative = "investigative",
+  opinion = "opinion",
+  knitting = "knitting",
+  woodworking = "woodworking",
+  uncategorized = "uncategorized",
+}
+export { CategoriesEnum, SubCategoryEnum };

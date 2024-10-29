@@ -29,6 +29,7 @@ const Placeholder = ({
     svgIcon,
     placeholderStyle,
   });
+
   return (
     <span
       className={formatClasses(`

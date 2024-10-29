@@ -19,8 +19,8 @@ const SectionContainer = ({
       w-full
       flex-col
       box-border
-      2xl:w-[65%]
-      xl:w-[70%]
+      2xl:w-[70%]
+      xl:w-[90%]
       lg:container
       containerPadding
       mb-16

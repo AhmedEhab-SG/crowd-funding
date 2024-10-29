@@ -1,3 +1,4 @@
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Layout from "./components/Layout";
 import Routers from "./routers";
@@ -7,6 +8,7 @@ function App() {
     <Layout>
       <Header />
       <Routers />
+      <Footer />
     </Layout>
   );
 }

@@ -31,6 +31,71 @@
         "description": "A destination for company news, creator tips, project inspiration, and home to product updates sharing everything you need to know about what's happening at CrowdFunding.",
         "more": "Read more"
       }
+    },
+
+    "auth": {
+      "title": "Auth",
+
+      "login": {
+        "title": "Log in",
+        "form": {
+          "email": "Email",
+          "password": "Password",
+          "rememberMe": "Remember me",
+          "forgotPassword": "Forgot password?",
+          "login": "Log in",
+          "logining": "Logging in...",
+          "invaildCredentials": "Invaild Credentials!"
+        },
+        "or": "or",
+        "notify": "Get notified when your friends back and launch projects. We'll never post anything on your without your permission.",
+        "notifyDetails": "If you continue with Socials, we'll import your name and profile photo, and access your friend list.",
+        "sginUp": {
+          "title": "Sign up",
+          "new": "New to CrowdFunding?"
+        }
+      },
+
+      "singup": {
+        "title": "Sign up",
+
+        "form": {
+          "name": "Name",
+          "email": "Email",
+          "reEmail": "Re-enter email",
+          "password": "Password",
+          "rePassword": "Re-enter password",
+          "sendMe": "Send me a weekly mix of handpicked projects, plus occasional CrowdFunding news",
+          "contactMe": "Contact me about participating in CrowdFunding research",
+          "create": "Create Account",
+          "creating": "Creating Account..."
+        },
+
+        "tos": {
+          "bySigning": "By signing up, you agree to our",
+          "privacyPolicy": "Privacy Policy",
+          "cookiePolicy": "Cookie Policy",
+          "and": "and",
+          "termsOfUse": "Terms of Use"
+        },
+
+        "tosDetails": "Our policies explain how we use your data to deliver, improve, and promote our service and our site, and how you can exercise your rights to control that use."
+      }
+    },
+
+    "shared": {
+      "title": "Shared",
+      "googleReCAPTCHA": {
+        "protectedBy": "This site is protected by reCAPTCHA and the Google",
+        "privacyPolicy": "Privacy Policy",
+        "and": "and",
+        "termsOfService": "Terms of Service",
+        "apply": "apply."
+      },
+      "read": {
+        "more": "Read more",
+        "less": "Read less"
+      }
     }
   },
   "footer": {
@@ -76,7 +141,7 @@
         "title": "More From CrowdFunding",
         "info": {
           "newsletters": "Newsletters",
-          "kickstarterProjectUpdates": "Kickstarter Project Updates",
+          "crowdFundingProjectUpdates": "CrowdFunding Project Updates",
           "theCreativeIndependent": "The Creative Independent",
           "mobileApps": "Mobile apps",
           "research": "Research"

@@ -2,6 +2,7 @@ import useBreakpoints from "../../hooks/useBreakPoints";
 import { trim } from "../../utils/functions/general";
 import ButtonStyled from "../shared/ButtonStyled";
 import en from "../../locales/en.json";
+import { routes } from "../../config";
 
 const { login, start } = en.header.nav;
 
@@ -24,6 +25,7 @@ const Nav = ({ className = "" }: { className?: string }) => {
       />
       <ButtonStyled
         title={login}
+        href={`${routes.auth}?ref=login`}
         size="custom"
         className="hover:text-primary"
       />

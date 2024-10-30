@@ -1,10 +1,11 @@
+import { Fragment } from "react/jsx-runtime";
 import { trim } from "../../utils/functions/general";
 import Categories from "./Categories";
 import Logo from "./Logo";
 import Nav from "./Nav";
 import Search from "./Search";
 
-const Header = () => {
+const Header = ({ removeNav }: { removeNav?: boolean }) => {
   return (
     <header
       className={trim(`
@@ -27,12 +28,20 @@ const Header = () => {
           lg:justify-evenly`)}
       >
         <Logo />
-        <Search className="lg:flex hidden" />
-        <Nav />
+        {!removeNav && (
+          <Fragment>
+            <Search className="lg:flex hidden" />
+            <Nav />
+          </Fragment>
+        )}
       </div>
-      <Search className="lg:hidden flex mb-4" />
-      <Categories />
-      <hr className="w-full mt-4 border-b border-[##E0E0E0]" />
+      {!removeNav && (
+        <Fragment>
+          <Search className="lg:hidden flex mb-4" />
+          <Categories className="mb-4" />
+        </Fragment>
+      )}
+      <hr className="w-full border-b border-[##E0E0E0]" />
     </header>
   );
 };

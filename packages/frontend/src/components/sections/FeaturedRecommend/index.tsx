@@ -30,6 +30,8 @@ const Featured = ({ className = "" }: { className?: string }) => {
           className={trim(`
             grid
             grid-cols-1
+            sm:grid-cols-2
+            md:grid-cols-1
             gap-4
             lg:grid-cols-2`)}
         >
@@ -40,10 +42,10 @@ const Featured = ({ className = "" }: { className?: string }) => {
             <ProjectCard img={imgThree} />
           </li>
           <li>
-            <ProjectCard img={imgFour} />
+            <ProjectCard img={imgFour} className="hidden lg:flex" />
           </li>
           <li>
-            <ProjectCard img={imgFive} />
+            <ProjectCard img={imgFive} className="hidden lg:flex" />
           </li>
         </ul>
 

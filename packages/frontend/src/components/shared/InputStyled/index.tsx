@@ -73,7 +73,7 @@ const InputStyled = forwardRef(
         <Label
           id={id}
           label={label}
-          labelClassName={labelClassName || ""}
+          labelClassName={labelClassName}
           tagSize={tagSize}
           error={error}
         />

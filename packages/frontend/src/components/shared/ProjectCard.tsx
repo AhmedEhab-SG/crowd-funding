@@ -24,10 +24,11 @@ const ProjectCard = forwardRef(
       <div
         ref={ref}
         className={trim(`
-        relative 
-        ${noAnimation ? "" : "group"}
-        w-full 
-        max-w-72 
+          relative 
+          w-full 
+          max-w-72 
+          justify-self-center
+          ${noAnimation ? "" : "group"}
         ${className}`)}
         {...attributes}
       >
@@ -44,10 +45,10 @@ const ProjectCard = forwardRef(
           duration-300
           ease-in-out
           bg-white
-          group-hover:absolute
-          group-hover:shadow-2xl
-          group-hover:border-gray-200
-          group-hover:z-10`)}
+          md:group-hover:absolute
+          md:group-hover:shadow-2xl
+          md:group-hover:border-gray-200
+          md:group-hover:z-10`)}
         >
           <img src={img || noImage} alt="no-image" className="rounded-xl" />
 
@@ -115,13 +116,15 @@ const ProjectCard = forwardRef(
                 ease-in-out
                 bg-white
                 w-full
-                group-hover:h-fit
-                group-hover:opacity-100`)}
+                md:group-hover:h-fit
+                md:group-hover:opacity-100`)}
               >
                 <p
                   className={trim(`
                   text-bodyblack 
-                  group-hover:block hidden               overflow-hidden
+                  md:group-hover:block
+                  hidden              
+                  overflow-hidden
                   overflow-ellipsis
                   line-clamp-[8]`)}
                 >

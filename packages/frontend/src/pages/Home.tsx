@@ -11,9 +11,18 @@ export default function Home() {
     <PageContainer>
       <HomeHero />
       <Featured />
+
       <BannerSection />
       <ScrollableSection />
       <ArticleSection />
+
+      <BannerSection />
+      <ScrollableSection />
+      <ArticleSection />
+
+      <ScrollableSection />
+      <ArticleSection />
+
       <CornoerSection />
     </PageContainer>
   );

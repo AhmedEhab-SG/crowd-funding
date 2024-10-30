@@ -8,10 +8,10 @@ const CornoerSection = () => {
     <ContainerSpliter>
       <SectionContainer>
         <SectionHeader title="Creator's Corner" />
-        <div className="grid gap-10 lg:grid-cols-2">
-          <Card />
-          <Card />
-          <Card />
+        <div className="grid md:gap-10 lg:grid-cols-2">
+          <Card className="border-b-2"/>
+          <Card className="border-b-2" />
+          <Card className="border-b-2"/>
           <Card />
         </div>
       </SectionContainer>

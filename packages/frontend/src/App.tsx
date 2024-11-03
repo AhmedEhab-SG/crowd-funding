@@ -4,13 +4,13 @@ import Layout from "./components/Layout";
 import Routers from "./routers";
 import { isRouteFound } from "./utils/functions/general";
 import { useLocation } from "react-router-dom";
-import { routes } from "./config";
+import { appRoutes } from "./config";
 
 export default function App() {
   const { pathname } = useLocation();
 
   const isFound = isRouteFound(pathname, {
-    dynamicRoutes: [routes.auth],
+    dynamicRoutes: [appRoutes.auth],
   });
 
   return (

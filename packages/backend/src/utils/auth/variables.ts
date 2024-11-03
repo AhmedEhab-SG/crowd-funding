@@ -1,8 +1,7 @@
 const variables = {
-  access: "access-token",
-  refresh: "refresh-token",
-  authorization: "authorization",
-  bearer: "bearer ",
+  refresh: "X-Refresh-Token",
+  authorization: "Authorization",
+  bearer: "Bearer",
 };
 
 export default variables;

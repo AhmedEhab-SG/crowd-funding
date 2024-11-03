@@ -7,6 +7,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import signupSchema from "../../../schemas/auth/signup.schema";
 import { ClipLoader } from "react-spinners";
+import { register as registerAPI } from "../../../api/routes/auth";
+import { useNavigate } from "react-router-dom";
+import { appRoutes } from "../../../config";
 
 const {
   name,
@@ -26,6 +29,7 @@ const Form = () => {
     email: false,
     password: false,
   });
+  const push = useNavigate();
 
   const {
     register,
@@ -38,8 +42,14 @@ const Form = () => {
 
   const onSubmitHandler: SubmitHandler<Signup> = async (data) => {
     try {
-      console.log(data);
-    } catch (error) {}
+      setIsLoading(() => true);
+      await registerAPI(data);
+      reset();
+      setIsLoading(() => false);
+      push(`${appRoutes.auth}?ref=login`);
+    } catch (error) {
+      setIsLoading(() => false);
+    }
   };
 
   return (
@@ -64,7 +74,7 @@ const Form = () => {
         className="rounded-sm"
         tagSize="sm"
         placeholderClassName="text-gray-500"
-        onClick={() => setShowReEnter((prev) => ({ ...prev, email: true }))}
+        onFocus={() => setShowReEnter((prev) => ({ ...prev, email: true }))}
         {...register("email")}
         error={errors.email?.message}
         disabled={isLoading}
@@ -89,7 +99,7 @@ const Form = () => {
         className="rounded-sm"
         placeholderClassName="text-gray-500"
         type="password"
-        onClick={() => setShowReEnter((prev) => ({ ...prev, password: true }))}
+        onFocus={() => setShowReEnter((prev) => ({ ...prev, password: true }))}
         {...register("password")}
         error={errors.password?.message}
         disabled={isLoading}

@@ -1,17 +1,18 @@
 import { Request, Response } from "express";
 import registerSchema from "../schemas/auth/register.schema";
-import { LoginUser, RegisterUser } from "../types/user";
+import { Login, Register } from "../types/auth";
 import {
   loginService,
   refreshService,
   registerService,
+  revokeRefreshService,
 } from "../services/auth.service";
 import logInSchema from "../schemas/auth/login.schema";
-import { getHttpTokensHeader } from "../utils/auth";
+import { getHeaderAccessToken, getHttpRefreshToken } from "../utils/auth";
 
 const registerController = async (req: Request, res: Response) => {
   try {
-    const user = req.body as RegisterUser;
+    const user = req.body as Register;
 
     const safeUser = registerSchema.safeParse(user);
 
@@ -30,7 +31,7 @@ const registerController = async (req: Request, res: Response) => {
 
 const loginController = async (req: Request, res: Response) => {
   try {
-    const user = req.body as LoginUser;
+    const user = req.body as Login;
 
     const safeUser = logInSchema.safeParse(user);
 
@@ -49,11 +50,38 @@ const loginController = async (req: Request, res: Response) => {
 
 const refreshController = async (req: Request, res: Response) => {
   try {
-    const tokens = getHttpTokensHeader(req);
-    await refreshService(res, tokens);
+    const refreshToken = getHttpRefreshToken(req);
+    const accessToken = getHeaderAccessToken(req);
+
+    if (!refreshToken || !accessToken) {
+      res.status(404).json({ message: "tokens are requried" });
+      return;
+    }
+
+    await refreshService(res, refreshToken, accessToken);
   } catch (err) {
     res.status(400).json({ message: "something went wrong" });
   }
 };
 
-export { loginController, registerController, refreshController };
+const revokeRefreshController = async (req: Request, res: Response) => {
+  try {
+    const refreshToken = getHttpRefreshToken(req);
+
+    if (!refreshToken) {
+      res.status(404).json({ message: "refresh token are requried" });
+      return;
+    }
+
+    await revokeRefreshService(res, refreshToken);
+  } catch (err) {
+    res.status(400).json({ message: "something went wrong" });
+  }
+};
+
+export {
+  loginController,
+  registerController,
+  refreshController,
+  revokeRefreshController,
+};

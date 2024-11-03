@@ -27,7 +27,6 @@
   },
   "homepage": "https://github.com/AhmedEhab-SG/crowd-funding#readme",
   "dependencies": {
-    "@crowd-funding/frontend": "file:",
     "@hookform/resolvers": "^3.9.0",
     "@reduxjs/toolkit": "^2.2.8",
     "axios": "^1.7.7",

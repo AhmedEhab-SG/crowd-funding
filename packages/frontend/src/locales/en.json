@@ -4,7 +4,25 @@
     "search": "Search projects, createors and categories",
     "nav": {
       "login": "Login",
-      "start": "Start a project"
+      "start": "Start a project",
+      "profileSettings": {
+        "account": {
+          "title": "Your Account",
+          "savedProjects": "Saved Projects",
+          "recommended": "Recommended for you",
+          "following": "Following",
+          "profile": "Profile",
+          "settings": "Settings"
+        },
+
+        "projects": {
+          "title": "Created Projects",
+          "newProject": "New",
+          "defaultCardTitle": "A Conceptual Art project"
+        },
+
+        "logout": "Log out"
+      }
     }
   },
   "pages": {

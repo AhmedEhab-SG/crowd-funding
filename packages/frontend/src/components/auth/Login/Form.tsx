@@ -8,13 +8,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { trim } from "../../../utils/functions/general";
 import { ClipLoader } from "react-spinners";
+import { login } from "../../../api/routes/auth";
+import { getHeaderAuthorization } from "../../../api/utils";
+import useLocalStorage from "../../../hooks/useLocalStorage";
+import { useNavigate } from "react-router-dom";
+import { appRoutes } from "../../../config";
 
 const {
   email,
   forgotPassword,
   password,
   rememberMe,
-  login,
+  login: loginText,
   invaildCredentials,
   logining,
 } = en.pages.auth.login.form;
@@ -22,6 +27,8 @@ const {
 const Form = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [invalidCredentials, setInvalidCredentials] = useState(false);
+  const { setValue } = useLocalStorage("session");
+  const push = useNavigate();
 
   const {
     register,
@@ -34,8 +41,36 @@ const Form = () => {
 
   const onSubmitHandler: SubmitHandler<Login> = async (data) => {
     try {
-      console.log(data);
-    } catch (error) {}
+      setIsLoading(() => true);
+      setInvalidCredentials(() => false);
+
+      const res = await login(data);
+
+      if (!res.data) {
+        setIsLoading(() => false);
+        setInvalidCredentials(() => true);
+      }
+
+      const accessToken = getHeaderAuthorization(res);
+
+      if (!accessToken) {
+        setInvalidCredentials(() => true);
+        return;
+      }
+
+      if (data.rememberMe) {
+        setValue({ ...res.data.user, accessToken }, "localStorage");
+      } else {
+        setValue({ ...res.data.user, accessToken }, "sessionStorage");
+      }
+
+      setIsLoading(() => false);
+      reset();
+      push(appRoutes.home);
+    } catch (error) {
+      setIsLoading(() => false);
+      setInvalidCredentials(() => true);
+    }
   };
 
   return (
@@ -74,7 +109,7 @@ const Form = () => {
 
       <ButtonStyled
         type="submit"
-        title={isLoading ? logining : login}
+        title={isLoading ? logining : loginText}
         disabled={isLoading}
         SvgIcon={isLoading && <ClipLoader size={20} color="white" />}
         className="text-white bg-primary hover:bg-green-900"
@@ -87,6 +122,7 @@ const Form = () => {
         type="checkbox"
         disabled={isLoading}
         label={rememberMe}
+        {...register("rememberMe")}
       />
 
       {!isLoading && invalidCredentials && (

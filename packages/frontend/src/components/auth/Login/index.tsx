@@ -6,7 +6,7 @@ import GoogleReCAPTCHA from "./GoogleReCAPTCHA";
 import Form from "./Form";
 import en from "../../../locales/en.json";
 import Switcher from "../shared/Switcher";
-import { routes } from "../../../config";
+import { appRoutes } from "../../../config";
 
 const { title, notify, notifyDetails, or, sginUp } = en.pages.auth.login;
 const { more, less } = en.pages.shared.read;
@@ -73,7 +73,7 @@ const Login = () => {
 
         <Switcher
           title={sginUp.new}
-          btn={{ title: sginUp.title, link: `${routes.auth}?ref=signup` }}
+          btn={{ title: sginUp.title, link: `${appRoutes.auth}?ref=signup` }}
         />
         <GoogleReCAPTCHA />
       </div>

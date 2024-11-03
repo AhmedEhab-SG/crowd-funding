@@ -11,6 +11,7 @@ const apiRoutes = {
     login: "/login",
     register: "/register",
     refresh: "/refresh",
+    revokeRefresh: "/revoke-refresh",
   },
   projects: "/projects",
 };

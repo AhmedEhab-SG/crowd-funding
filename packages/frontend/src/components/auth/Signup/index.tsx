@@ -1,4 +1,4 @@
-import { routes } from "../../../config";
+import { appRoutes } from "../../../config";
 import { trim } from "../../../utils/functions/general";
 import SectionContainer from "../../shared/SectionContainer";
 import Switcher from "../shared/Switcher";
@@ -30,7 +30,7 @@ const Signup = () => {
         <Switcher
           title="Have an account?"
           className="border-y-0 border-b pt-0"
-          btn={{ title: "Log in", link: `${routes.auth}?ref=login` }}
+          btn={{ title: "Log in", link: `${appRoutes.auth}?ref=login` }}
         />
         <h1 className="text-responsive-2lg">{title}</h1>
 
@@ -48,21 +48,21 @@ const Signup = () => {
               size="xs"
               className="p-0 text-blue-600 hover:underline"
               title={privacyPolicy}
-              href={routes.home}
+              href={appRoutes.home}
             />
             ,{" "}
             <ButtonStyled
               size="xs"
               className="p-0 text-blue-600 hover:underline"
               title={cookiePolicy}
-              href={routes.home}
+              href={appRoutes.home}
             />
             , {and}{" "}
             <ButtonStyled
               size="xs"
               className="p-0 text-blue-600 hover:underline"
               title={termsOfUse}
-              href={routes.home}
+              href={appRoutes.home}
             />
             .
           </p>

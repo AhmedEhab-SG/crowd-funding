@@ -3,9 +3,12 @@ type DecodeUser = {
   email: string;
 };
 
-type Tokens = {
-  accessToken: string | null;
-  refreshToken: string | null;
-};
+import { z } from "zod";
+import loginSchema from "../schemas/auth/login.schema";
+import registerSchema from "../schemas/auth/register.schema";
 
-export { DecodeUser, Tokens };
+type Login = z.infer<typeof loginSchema>;
+
+type Register = z.infer<typeof registerSchema>;
+
+export { DecodeUser, Login, Register };

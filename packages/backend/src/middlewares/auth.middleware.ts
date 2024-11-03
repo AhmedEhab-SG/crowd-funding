@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
-import { getHttpTokensHeader, verifyToken } from "../utils/auth";
+import { getHeaderAccessToken, verifyToken } from "../utils/auth";
 import { decode } from "jsonwebtoken";
 import { DecodeUser } from "../types/auth";
 
 const auth = (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { accessToken } = getHttpTokensHeader(req);
+    const accessToken = getHeaderAccessToken(req);
 
     if (!accessToken) {
       res.status(404).json({ message: "requried a access token" });

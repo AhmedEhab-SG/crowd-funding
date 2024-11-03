@@ -5,12 +5,21 @@ import cors from "cors";
 import authRouter from "./routers/auth.router";
 import { apiRoutes } from "./config";
 import projectRouter from "./routers/project.router";
+import cookieParser from "cookie-parser";
+import variables from "./utils/auth/variables";
 config();
 
 const app: Express = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: [process.env.WEB_BASE_URL!],
+    exposedHeaders: [variables.authorization],
+  })
+);
+app.use(cookieParser());
 app.use(fileUpload());
 
 // remove after we have a frontend

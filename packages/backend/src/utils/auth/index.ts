@@ -1,53 +1,52 @@
 import { CookieOptions, Request, Response } from "express";
 import variables from "./variables";
 import { verify } from "jsonwebtoken";
-import { Tokens } from "../../types/auth";
 
-const setHttpTokensCookie = (
+const setHttpRefreshToken = (
   res: Response,
-  accessToken?: string,
-  refreshToken?: string,
-  options: {
-    accessTokenOptions?: CookieOptions;
-    refreshTokenOptions?: CookieOptions;
-  } = {
-    accessTokenOptions: {
-      httpOnly: true,
-      maxAge: 10,
-      expires: new Date(Date.now() + 10),
-    },
-    refreshTokenOptions: {
-      httpOnly: true,
-      maxAge: 60 * 60 * 24 * 7,
-      expires: new Date(Date.now() + 60 * 60 * 24 * 7),
-      secure: true,
-      sameSite: "strict",
-    },
-  }
-) => {
-  accessToken &&
-    res.cookie(variables.access, accessToken, options.accessTokenOptions!);
+  refreshToken: string,
+  {
+    httpOnly = true,
+    secure = process.env.NODE_ENV === "production",
+    maxAge = 60 * 60 * 24 * 7 * 1000,
+    expires = new Date(Date.now() + 60 * 60 * 24 * 7 * 1000),
+    sameSite = "strict",
+    remember = false,
+  }: CookieOptions & {
+    remember?: boolean;
+  } = {}
+) =>
+  res.cookie(variables.refresh, refreshToken, {
+    httpOnly,
+    secure,
+    expires: remember ? expires : undefined,
+    maxAge: remember ? maxAge : undefined,
+    sameSite,
+  });
 
-  refreshToken &&
-    res.cookie(variables.refresh, refreshToken, options.refreshTokenOptions!);
-};
+const getHttpRefreshToken = (req: Request) =>
+  (req.cookies[variables.refresh] as string) || null;
 
-const getHttpTokensHeader = (req: Request) => {
-  let tokens = { accessToken: null, refreshToken: null } as Tokens;
+const deleteHttpRefreshToken = (res: Response) =>
+  res.clearCookie(variables.refresh);
 
-  const authHeader = req.headers[variables.authorization] as string;
+const setHeaderAccessToken = (res: Response, accessToken: string) =>
+  res.setHeader(variables.authorization, `${variables.bearer} ${accessToken}`);
 
-  if (authHeader && authHeader.startsWith(variables.bearer)) {
-    const refreshToken = authHeader.substring(
-      variables.bearer.length,
-      authHeader.length
-    );
-    tokens.accessToken = refreshToken;
-  }
+const getHeaderAccessToken = (req: Request) => {
+  const authorization =
+    (req.headers[variables.authorization] as string) || null;
 
-  tokens.refreshToken = (req.headers[variables.refresh] as string) || null;
+  console.log(req.headers);
 
-  return tokens;
+  if (!authorization) return null;
+
+  const bearer = authorization.split(" ");
+
+  if (bearer.length !== 2 || bearer[0]?.toLowerCase() !== variables.bearer)
+    return null;
+
+  return bearer[1];
 };
 
 const verifyToken = (token: string, secret: string) => {
@@ -59,4 +58,11 @@ const verifyToken = (token: string, secret: string) => {
   }
 };
 
-export { setHttpTokensCookie, getHttpTokensHeader, verifyToken };
+export {
+  setHeaderAccessToken,
+  getHeaderAccessToken,
+  verifyToken,
+  setHttpRefreshToken,
+  getHttpRefreshToken,
+  deleteHttpRefreshToken,
+};
